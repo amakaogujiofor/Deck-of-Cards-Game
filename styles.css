@@ -1,3 +1,38 @@
+html,
 body {
+  margin: 0;
+  padding: 0;
   background: #297a3a;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+button {
+  background-color: yellow;
+  margin: 10px;
+  font-size: large;
+  cursor: pointer;
+  border: none;
+}
+
+button#draw-cards {
+  background-color: tomato;
+  padding: 5px;
+}
+
+button#new-cards {
+  align-self: flex-start;
+  background-color: yellow;
+  padding: 5px;
+}
+
+h1 {
+  text-align: center;
+  color: white;
 }
