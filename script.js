@@ -9,16 +9,15 @@ const cScore = document.getElementById("comp-score");
 const p2Score = document.getElementById("play2-score");
 
 // Function Declaration and API Details
-function getCards() {
-  fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      deckId = data.deck_id;
-      document.getElementById(
-        "remaining"
-      ).textContent = `You have ${data.remaining} cards`;
-    });
+async function getCards() {
+  const res = await fetch(
+    "https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/"
+  );
+  const data = await res.json();
+  deckId = data.deck_id;
+  document.getElementById(
+    "remaining"
+  ).textContent = `You have ${data.remaining} cards`;
 }
 
 document.getElementById("new-cards").addEventListener("click", getCards);
