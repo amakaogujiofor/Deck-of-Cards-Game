@@ -5,11 +5,13 @@ body {
   background: #297a3a;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: white;
 }
 
 body {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-around;
 }
 
@@ -24,6 +26,7 @@ button {
 button#draw-cards {
   background-color: tomato;
   padding: 5px;
+  align-items: stretch;
 }
 
 button#new-cards {
@@ -35,4 +38,19 @@ button#new-cards {
 h1 {
   text-align: center;
   color: white;
+}
+
+div.card-slot {
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  height: 120px;
+  width: calc(120px * 5 / 7);
+}
+
+div.card-slot:nth-of-type(1) {
+  margin-bottom: 50px;
+}
+
+img.card {
+  width: 100%;
 }
