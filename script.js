@@ -2,6 +2,11 @@
 let deckId;
 const cardsContainer = document.getElementById("cards");
 const header = document.getElementById("header");
+const drawBtn = document.getElementById("draw-cards");
+let compScore = 0;
+let player2Score = 0;
+const cScore = document.getElementById("comp-score");
+const p2Score = document.getElementById("play2-score");
 
 // Function Declaration and API Details
 function getCards() {
@@ -10,6 +15,9 @@ function getCards() {
     .then((data) => {
       console.log(data);
       deckId = data.deck_id;
+      document.getElementById(
+        "remaining"
+      ).textContent = `You have ${data.remaining} cards`;
     });
 }
 
@@ -28,6 +36,21 @@ document.getElementById("draw-cards").addEventListener("click", () => {
             `;
       const winnerText = determineCardWinner(data.cards[0], data.cards[1]);
       header.textContent = winnerText;
+
+      document.getElementById(
+        "remaining"
+      ).textContent = `You have ${data.remaining} cards left`;
+
+      if (data.remaining === 0) {
+        drawBtn.disabled = true;
+        if (compScore > player2Score) {
+          header.textContent = "Computer has won the game";
+        } else if (player2Score > compScore) {
+          header.textContent = " Player2 has won the game";
+        } else {
+          header.textContent = "It's a tie game";
+        }
+      }
     });
 });
 
@@ -50,13 +73,15 @@ function determineCardWinner(card1, card2) {
   ];
   const card1ValueIndex = valueOptions.indexOf(card1.value);
   const card2ValueIndex = valueOptions.indexOf(card2.value);
-  console.log("card 1:", card1ValueIndex);
-  console.log("card 2:", card2ValueIndex);
+  //   console.log("card 1:", card1ValueIndex);
+  //   console.log("card 2:", card2ValueIndex);
 
   if (card1ValueIndex > card2ValueIndex) {
-    return "Card 1 wins!";
+    cScore.textContent = `Computer has ${++compScore} points`;
+    return "Computer wins!";
   } else if (card1ValueIndex < card2ValueIndex) {
-    return "Card 2 wins!";
+    p2Score.textContent = `Player 2 has ${++player2Score} points`;
+    return "Player 2 wins!";
   } else {
     return "It's a tie!";
   }
